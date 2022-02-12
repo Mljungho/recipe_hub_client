@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { TextField, Button, Alert } from "@mui/material";
+import { TextField, Button, Alert, Input } from "@mui/material";
 import Recipes from "../modules/Recipes";
+import utilities from "../modules/utilities";
 
 const RecipeCreateForm = () => {
   const [recipe, setRecipe] = useState({});
   const [message, setMessage] = useState();
+  const [fileName, setFileName] = useState("");
 
   const createRecipe = async () => {
     const response = await Recipes.create(recipe);
@@ -14,8 +16,16 @@ const RecipeCreateForm = () => {
   const handleChange = (event) => {
     setRecipe({
       ...recipe,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
+  };
+
+  const handleImage = async (event) => {
+    event.preventDevault();
+    const file = event.target.files[0];
+    file.name && setFileName(file.name);
+    const encodedFile = await utilities.imageEncoder(file);
+    setRecipe({ ...recipe, image: encodedFile });
   };
 
   return (
@@ -43,7 +53,10 @@ const RecipeCreateForm = () => {
       <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
         Save
       </Button>
-      <Button variant="outlined">Image</Button>
+      <label>
+        <Input data-cy="attach-image" accept="image/*" onChange={handleImage} />
+        <Button variant="outlined">Image</Button>
+      </label>
       {message && (
         <Alert data-cy="flash-message" severity="info">
           {message}
