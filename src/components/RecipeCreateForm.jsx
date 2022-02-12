@@ -14,7 +14,7 @@ const RecipeCreateForm = () => {
   const handleChange = (event) => {
     setRecipe({
       ...recipe,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -43,6 +43,7 @@ const RecipeCreateForm = () => {
       <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
         Save
       </Button>
+      <Button variant="outlined">Image</Button>
       {message && (
         <Alert data-cy="flash-message" severity="info">
           {message}

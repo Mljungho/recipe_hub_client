@@ -16,6 +16,7 @@ describe("Recipe", () => {
       cy.get("[data-cy=create-recipe]").click();
       cy.get("[data-cy=name-input]").type("Pancakes");
       cy.get("[data-cy=instructions]").type("Mix them together. Bake");
+      cy.get("[data-cy=attach-image]").attachFile("./carbonara.jpeg")
       cy.get("[data-cy=submit-btn]").click();
     });
 
