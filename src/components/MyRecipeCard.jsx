@@ -5,7 +5,7 @@ const RecipeCard = ({ recipe }) => {
   return (
     <Card sx={{ maxWidth: 525, boxShadow: 5 }} data-cy="current-user-recipes">
       <CardActionArea>
-        <CardHeader data-cy="recipe-title" title={recipe.name} />
+        <CardHeader data-cy="recipe-name" title={recipe.name} />
         <CardMedia
           component="img"
           height="194"
