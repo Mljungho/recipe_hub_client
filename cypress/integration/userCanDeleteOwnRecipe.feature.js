@@ -49,6 +49,11 @@ describe("User can see their personal page", () => {
         }).as("RecipeDelete");
         cy.get("[data-cy=delete-btn]").click();
       });
+
+      it("is expected to show a confirmation window when you click the delete button", () => {
+        cy.get("[data-cy=conf-window]").should("be.visible");
+      });
+
       it("is expected to make a DELETE request to the API", () => {
         cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
       });

@@ -12,6 +12,12 @@ const RecipeFullView = () => {
 
   const deleteRecipe = async () => {
     const data = await Recipes.delete(id);
+    <div data-cy="conf-window"
+      onClick={() => {
+        if (window.confirm("Are you sure you wish to delete this item?"))
+          this.onCancel();
+      }}
+    />
     return data;
   };
 
@@ -19,6 +25,7 @@ const RecipeFullView = () => {
     <>
       {currentUser ? (
         <>
+
           <Button
             onClick={deleteRecipe}
             sx={{ margin: 1, ml: 77, flexGrow: 1, boxShadow: 3 }}
