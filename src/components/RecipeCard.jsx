@@ -50,9 +50,10 @@ const RecipeCard = ({ recipe }) => {
         <CardMedia
           component="img"
           height="194"
-          image="https://mui.com/static/images/cards/paella.jpg"
+          image={recipe.image}
         />
         <ExpandMore
+          data-cy={`recipe-expand-${recipe.index}`}
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
