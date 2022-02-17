@@ -9,7 +9,7 @@ import {
   colors,
   CardActionArea,
   Collapse,
-  IconButton
+  IconButton,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
@@ -22,8 +22,8 @@ const ExpandMore = styled((props) => {
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest
-  })
+    duration: theme.transitions.duration.shortest,
+  }),
 }));
 
 const RecipeCard = ({ recipe }) => {
@@ -38,20 +38,16 @@ const RecipeCard = ({ recipe }) => {
     <Card
       sx={{ maxWidth: 345, boxShadow: 3 }}
       data-cy={`recipe-card-${recipe.index}`}
+      onClick={() => navigate(`/recipes/${recipe.id}`)}
     >
       <CardActionArea>
         <CardHeader
-          onClick={() => navigate(`/recipes/${recipe.id}`)}
           data-cy={`recipe-header-${recipe.index}`}
           avatar={<Avatar sx={{ bgcolor: colors.red[500] }}>R</Avatar>}
           title={recipe.name}
           subheader={recipe.created_at}
         />
-        <CardMedia
-          component="img"
-          height="194"
-          image={recipe.image}
-        />
+        <CardMedia component="img" height="194" image={recipe.image} />
         <ExpandMore
           data-cy={`recipe-expand-${recipe.index}`}
           expand={expanded}
