@@ -35,19 +35,20 @@ const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
 
   return (
-    <Card
-      sx={{ maxWidth: 345, boxShadow: 3 }}
-      data-cy={`recipe-card-${recipe.index}`}
-      onClick={() => navigate(`/recipes/${recipe.id}`)}
-    >
+    <Card sx={{ maxWidth: 345, boxShadow: 3 }}>
       <CardActionArea>
-        <CardHeader
-          data-cy={`recipe-header-${recipe.index}`}
-          avatar={<Avatar sx={{ bgcolor: colors.red[500] }}>R</Avatar>}
-          title={recipe.name}
-          subheader={recipe.created_at}
-        />
-        <CardMedia component="img" height="194" image={recipe.image} />
+        <div
+          data-cy={`recipe-card-${recipe.index}`}
+          onClick={() => navigate(`/recipes/${recipe.id}`)}
+        >
+          <CardHeader
+            data-cy={`recipe-header-${recipe.index}`}
+            avatar={<Avatar sx={{ bgcolor: colors.red[500] }}>R</Avatar>}
+            title={recipe.name}
+            subheader={recipe.created_at}
+          />
+          <CardMedia component="img" height="194" image={recipe.image} />
+        </div>
         <ExpandMore
           data-cy={`recipe-expand-${recipe.index}`}
           expand={expanded}
